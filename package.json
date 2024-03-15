@@ -1,7 +1,7 @@
 {
   "name": "react-redux-boilerplate",
   "version": "1.0.0",
-  "homepage": "https://github.com/vannizhang/react-redux-boilerplate",
+  "homepage": "https://mrcrabs67.github.io/ModernCalculator/",
   "description": "Start React+Redux project with TypeScript in an easier and faster way",
   "main": "index.js",
   "scripts": {
