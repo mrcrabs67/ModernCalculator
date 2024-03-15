@@ -15,10 +15,7 @@ const Calculator = ({ calculator, calcTypeChange }: Props) => {
             m="10px"
         >
             <Button onClick={calcTypeChange}>Change CalcType</Button>
-            <Box m="10px">
-                {calculator}
-                {/*{application}*/}
-            </Box>
+            <Box m="10px">{calculator}</Box>
         </Box>
     );
 };
