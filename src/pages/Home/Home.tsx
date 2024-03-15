@@ -12,6 +12,7 @@ import ClickCalc from '../../components/ClickCalc';
 import Converter from '../../components/Converter';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, Link } from 'react-router-dom';
+import { historyStateSelector } from '@store/calculator/selector';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Home = () => {
     const [history, setHistory] = useState([]);
     const [mode, setMode] = useState<string>('Calculator');
 
-    // const historystate = useSelector(historyStateSelector);
+    const historyState = useSelector(historyStateSelector);
 
     const applyExpression = useCallback(
         (countedNumber: string) => {
@@ -117,15 +118,24 @@ const Home = () => {
                     alignItems="center"
                     h="100vh"
                 >
-                    {/* <Box display='flex'>
-                    { historystate.map((e:any, index: number) => {return <Button key={ index } color='red' size='xs'>{e}</Button>} ) }
-                </Box> */}
+                    {
+                        <Box display="flex">
+                            {historyState.map((e: any, index: number) => {
+                                return (
+                                    <Button key={index} color="red" size="xs">
+                                        {e}
+                                    </Button>
+                                );
+                            })}
+                        </Box>
+                    }
                     <Box display="flex" h="90px">
                         {/*<HamburgerIcon w='45px' h='45px' p='5px' m='5px' borderRadius='5px'/>*/}
                         <Menu setMode={setMode} />
                     </Box>
                     <Box display="flex" flex-direction="row" m="10px">
-                        <History data={history} />
+                        {/*<History data={historyState} />*/}
+                        <Box>123</Box>
                         History
                         {/*<Routes>*/}
                         {/*    <Route path="/" element={<Calculator calculator={calculator} calcTypeChange={calcTypeChange} history={history} />} />*/}

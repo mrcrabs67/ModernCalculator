@@ -1,16 +1,23 @@
 import { Box, Input, Text } from '@chakra-ui/react';
 import React, { useRef } from 'react';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { setHistory } from "@store/calculator/reducer";
+import { historyStateSelector } from "@store/calculator/selector";
 
 type Props = {
     updateHistory: (calcResult: string) => void;
 };
 
 const InputCalc = ({ updateHistory }: Props) => {
+    const dispatch = useDispatch();
+    const historyState = useSelector(historyStateSelector);
+
     const [result, setResult] = useState('');
     const [counts, setCounts] = useState('');
-    const inputRef = useRef<any>();
-    // console.log(document.querySelector(".chakra-input.css-1uwy1eh"));
+
+    const inputRef = useRef<HTMLInputElement>(null);
+
     useEffect(() => {
         inputRef.current?.focus();
     });
@@ -33,6 +40,7 @@ const InputCalc = ({ updateHistory }: Props) => {
         if (e.nativeEvent.key == 'Enter') {
             // debugger;
             updateHistory(counts);
+            dispatch(setHistory(eval(counts)));
             setCounts('');
         }
     };

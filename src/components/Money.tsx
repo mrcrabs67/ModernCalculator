@@ -10,15 +10,11 @@ import {
 } from '@chakra-ui/react';
 import React, { useRef, useState } from 'react';
 import getCurrency from '../functions/getCurrency';
-import { useSelector, useDispatch } from 'react-redux';
 
 type Props = {
     data: Array<string>;
 };
 const Converter = ({ data }: Props) => {
-    // const history = useSelector(historyStateSelector);
-    // const dispatch = useDispatch();
-
     const selection = data.map((e) => {
         return (
             <option key={e} value={e}>
@@ -35,7 +31,6 @@ const Converter = ({ data }: Props) => {
 
     const convertMoney = async () => {
         const currencyUsd = Number(await getCurrency());
-        // debugger;
         switch (secondRef.current.value) {
             case 'Доллар США':
                 setResult(input);

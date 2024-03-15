@@ -14,19 +14,12 @@ import React, { useRef, useState } from 'react';
 import { HamburgerIcon, SettingsIcon } from '@chakra-ui/icons';
 import Money from './Money';
 import Distance from './Distance';
-import { useSelector, useDispatch } from 'react-redux';
 
 const Converter = () => {
-    // const dispatch = useDispatch();
 
     const dataMoney: Array<string> = ['Доллар США', 'Рубли'];
     const dataDistance: Array<string> = ['Метры', 'Сантиметры'];
 
-    const firstRef = useRef<any>();
-    const secondRef = useRef<any>();
-
-    const [input, setInput] = useState('0');
-    const [result, setResult] = useState(0);
     const [mode, setMode] = useState('Distance');
 
     let converter;

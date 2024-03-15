@@ -10,7 +10,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "prepare": "husky install",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "predeploy": "npm run build"
   },
   "lint-staged": {
