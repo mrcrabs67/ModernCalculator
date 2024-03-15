@@ -23,6 +23,7 @@ const slice = createSlice({
     reducers: {
         setHistory: (state, action: PayloadAction<string[]>) => {
             state.history = action.payload;
+            // state.history.push(action.payload);
         },
         setErrorCode: (state, action: PayloadAction<string | null>) => {
             state.errorCode = action.payload;

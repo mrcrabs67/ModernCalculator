@@ -1,9 +1,9 @@
 import { Box, Input, Text } from '@chakra-ui/react';
 import React, { useRef } from 'react';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { setHistory } from "@store/calculator/reducer";
-import { historyStateSelector } from "@store/calculator/selector";
+import { useDispatch, useSelector } from 'react-redux';
+import { setHistory } from '@store/calculator/reducer';
+import { historyStateSelector } from '@store/calculator/selector';
 
 type Props = {
     updateHistory: (calcResult: string) => void;

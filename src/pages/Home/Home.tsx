@@ -119,24 +119,25 @@ const Home = () => {
                     h="100vh"
                 >
                     {
-                        <Box display="flex">
-                            {historyState.map((e: any, index: number) => {
-                                return (
-                                    <Button key={index} color="red" size="xs">
-                                        {e}
-                                    </Button>
-                                );
-                            })}
-                        </Box>
+                        // <Box display="flex">
+                        //     {history.map((e: any, index: number) => {
+                        //         return (
+                        //             <Button key={index} color="red" size="xs">
+                        //                 {e}
+                        //             </Button>
+                        //         );
+                        //     })}
+                        // </Box>
                     }
                     <Box display="flex" h="90px">
                         {/*<HamburgerIcon w='45px' h='45px' p='5px' m='5px' borderRadius='5px'/>*/}
                         <Menu setMode={setMode} />
                     </Box>
                     <Box display="flex" flex-direction="row" m="10px">
-                        {/*<History data={historyState} />*/}
-                        <Box>123</Box>
-                        History
+                        <Box display="flex" flexDirection="column">
+                            History
+                            <History data={history} />
+                        </Box>
                         {/*<Routes>*/}
                         {/*    <Route path="/" element={<Calculator calculator={calculator} calcTypeChange={calcTypeChange} history={history} />} />*/}
                         {/*    <Route path="converter" element={<Converter />} />*/}
