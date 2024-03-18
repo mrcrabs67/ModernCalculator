@@ -21,8 +21,8 @@ const slice = createSlice({
     name: 'calculator',
     initialState: initialCalcState,
     reducers: {
-        setHistory: (state, action: PayloadAction<string[]>) => {
-            state.history = action.payload;
+        setHistory: (state, action: PayloadAction<string>) => {
+            state.history = [...state.history, action.payload];
             // state.history.push(action.payload);
         },
         setErrorCode: (state, action: PayloadAction<string | null>) => {
