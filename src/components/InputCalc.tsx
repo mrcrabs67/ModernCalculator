@@ -10,6 +10,7 @@ type Props = {
 };
 
 const InputCalc = ({ updateHistory }: Props) => {
+    // в Целом, мне нравится компонент
     const dispatch = useDispatch();
     const historyState = useSelector(historyStateSelector);
 
@@ -22,7 +23,7 @@ const InputCalc = ({ updateHistory }: Props) => {
         inputRef.current?.focus();
     });
 
-    const expressions = /[0-9]|\)/;
+    const expressions = /[0-9]|\)/; // вынести над компонентом, зачем каждыф раз создавать и выделять место в памяти при перерисовке компонента?
     const updateCounts = (e: any) => {
         const lastNumber = e.target.value[e.target.value.length - 2];
         if (

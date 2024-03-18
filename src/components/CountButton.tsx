@@ -4,11 +4,11 @@ import React from 'react';
 type Props = {
     expression: string;
     data: string;
-    applyExpression: any;
+    applyExpression: (expression: string) => void;
 };
 
 const CountButton = ({ expression, data, applyExpression }: Props) => {
-    const expressions: RegExp = /\+|\-|\/|\*| /;
+    const expressions: RegExp = /\+|\\-|\/|\*| /;
     const lastNumber: string = data[data.length - 1];
     const checkExpressionType = () => {
         if (expressions.test(lastNumber)) return;

@@ -22,7 +22,7 @@ const Converter = () => {
 
     const [mode, setMode] = useState('Distance');
 
-    let converter;
+    let converter; // Витя, я роутинг в приложении, трахни меня наконец
     switch (mode) {
         case 'Money':
             converter = <Money data={dataMoney} />;
@@ -33,6 +33,8 @@ const Converter = () => {
     }
 
     const Menu = () => {
+        // плохая практика, компонент в компоненте
+        // либо выноси в отдельный файл, либо не плоди, лучше выносить
         const { isOpen, onToggle } = useDisclosure();
 
         return (

@@ -19,6 +19,7 @@ const ClickCalc = ({
     updateHistory,
     applyExpression,
 }: Props) => {
+    const symbols: Array<string> = ['+', '-', '*', '/'];
     return (
         <Box
             display="flex"
@@ -54,26 +55,15 @@ const ClickCalc = ({
             <Box display="flex">
                 <Number number={number} setNumber={setNumber} />
                 <Box display="flex" flexDirection="column">
-                    <CountButton
-                        data={number}
-                        expression={'+'}
-                        applyExpression={applyExpression}
-                    />
-                    <CountButton
-                        data={number}
-                        expression={'-'}
-                        applyExpression={applyExpression}
-                    />
-                    <CountButton
-                        data={number}
-                        expression={'*'}
-                        applyExpression={applyExpression}
-                    />
-                    <CountButton
-                        data={number}
-                        expression={'/'}
-                        applyExpression={applyExpression}
-                    />
+                    {symbols.map((sym: string, index: number) => {
+                        return (
+                            <CountButton
+                                expression={sym}
+                                data={number}
+                                applyExpression={applyExpression}
+                            />
+                        );
+                    })}
                 </Box>
                 <Button
                     m="4px"

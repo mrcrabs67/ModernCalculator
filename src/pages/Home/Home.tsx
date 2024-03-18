@@ -17,14 +17,16 @@ import { historyStateSelector } from '@store/calculator/selector';
 const Home = () => {
     const dispatch = useDispatch();
 
-    const [number, setNumber] = useState('0');
+    // где редакс дядя витя
+    const [number, setNumber] = useState('0'); // используется только в калькуляторе с кнопками и должно внутри компонента или в редаксе
     const [result, setResult] = useState('');
-    const [calcType, setCalcType] = useState('ClickCalc');
-    const [history, setHistory] = useState([]);
+    const [calcType, setCalcType] = useState('ClickCalc'); // вынести логику в роутер и пускай он разруливает
+    const [history, setHistory] = useState([]); // две истории, и в редаксе и тут, глаз режет. Если они разные для разных калькуляторов, прячь внутри самих калькуляторов или редаксе
     const [mode, setMode] = useState<string>('Calculator');
 
     const historyState = useSelector(historyStateSelector);
 
+    // внутри компонента, резалт в редаксе
     const applyExpression = useCallback(
         (countedNumber: string) => {
             setNumber(countedNumber);
@@ -37,6 +39,10 @@ const Home = () => {
         (calcResult: string) => {
             if (history.length > 6) {
                 history.shift();
+                // такс, что здесь происходит
+                // ты не можешь менять значение в стейте
+                // ты можешь лишь заменять стейт новым значением
+                // так что если хочешь что-то сделать с history, делай новый массив и его модифицируй, а потом отправляем в стейт
             }
             setHistory(history.concat(eval(calcResult)));
         },
@@ -48,13 +54,15 @@ const Home = () => {
             ? setCalcType('InputCalc')
             : setCalcType('ClickCalc');
         // setCalcType((previous: String) => previous === 'ClickCalc' ? setCalcType('InputCalc') : setCalcType('ClickCalc'))
+        // почему не через превьюс стейт? чуток оптимизирует и уберет зависимость
     }, [calcType]);
 
     let application;
-    let calculator;
+    let calculator; // плохой нейминг, калькулятор передаем в кульлутор ниже, сразу представляю рекурсию
 
-    switch (calcType) {
+    switch (calcType) { // заменить на роутер
         case 'ClickCalc':
+        default:
             // useContext почитать
             calculator = (
                 <ClickCalc
@@ -70,37 +78,17 @@ const Home = () => {
         case 'InputCalc':
             calculator = <InputCalc updateHistory={updateHistory} />;
             break;
-        default:
-            calculator = (
-                <ClickCalc
-                    number={number}
-                    setNumber={setNumber}
-                    result={result}
-                    setResult={setResult}
-                    updateHistory={updateHistory}
-                    applyExpression={applyExpression}
-                />
-            );
-            break;
     }
 
     switch (mode) {
-        case 'Calculator':
-            application = (
-                <Calculator
-                    calculator={calculator}
-                    calcTypeChange={calcTypeChange}
-                    history={history}
-                />
-            );
-            break;
         case 'Converter':
             application = <Converter />;
             break;
-        default:
+        case 'Calculator':
+        default: // вынес дефолт сюда же, но свитч мне не нравится
             application = (
                 <Calculator
-                    calculator={calculator}
+                    calculator={calculator} // плохой нейминг, можно передавать как children, а не через пропс, будет красивее
                     calcTypeChange={calcTypeChange}
                     history={history}
                 />
@@ -131,7 +119,7 @@ const Home = () => {
                     }
                     <Box display="flex" h="90px">
                         {/*<HamburgerIcon w='45px' h='45px' p='5px' m='5px' borderRadius='5px'/>*/}
-                        <Menu setMode={setMode} />
+                        <Menu setMode={setMode} /> // мне нравится что меню вынесено в компонент отдельный, но будет красивее если оно будет работать с редаксом или роутером
                     </Box>
                     <Box display="flex" flex-direction="row" m="10px">
                         <Box display="flex" flexDirection="column">

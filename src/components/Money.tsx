@@ -30,6 +30,10 @@ const Converter = ({ data }: Props) => {
     const [result, setResult] = useState<string | number>(0);
 
     const convertMoney = async () => {
+        // действительно, зачем же нам экономить ресурсы пк
+        // будем каждый раз дергать
+        // вместо того, что бы вынести в редакс получение курса и запрашивать один раз при открытии раздела
+        // так же лучше и расчет вынести в редакс, и результат брать из редакса с помощью селектора
         const currencyUsd = Number(await getCurrency());
         switch (secondRef.current.value) {
             case 'Доллар США':
