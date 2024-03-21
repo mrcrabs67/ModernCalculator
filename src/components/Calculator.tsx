@@ -3,7 +3,7 @@ import React from 'react';
 
 type Props = {
     calculator: any;
-    calcTypeChange: any;
+    calcTypeChange: () => void;
     history: any;
 };
 const Calculator = ({ calculator, calcTypeChange }: Props) => {

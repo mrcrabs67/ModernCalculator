@@ -58,9 +58,11 @@ const Home = () => {
     }, [calcType]);
 
     let application;
-    let calculator; // плохой нейминг, калькулятор передаем в кульлутор ниже, сразу представляю рекурсию
+    let calculator: any; // плохой нейминг, калькулятор передаем в кульлутор ниже, сразу представляю рекурсию
 
-    switch (calcType) { // заменить на роутер
+    switch (
+        calcType // заменить на роутер
+    ) {
         case 'ClickCalc':
         default:
             // useContext почитать
@@ -119,7 +121,9 @@ const Home = () => {
                     }
                     <Box display="flex" h="90px">
                         {/*<HamburgerIcon w='45px' h='45px' p='5px' m='5px' borderRadius='5px'/>*/}
-                        <Menu setMode={setMode} /> // мне нравится что меню вынесено в компонент отдельный, но будет красивее если оно будет работать с редаксом или роутером
+                        <Menu setMode={setMode} /> // мне нравится что меню
+                        вынесено в компонент отдельный, но будет красивее если
+                        оно будет работать с редаксом или роутером
                     </Box>
                     <Box display="flex" flex-direction="row" m="10px">
                         <Box display="flex" flexDirection="column">

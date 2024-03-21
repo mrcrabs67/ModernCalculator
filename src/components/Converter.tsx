@@ -16,7 +16,6 @@ import Money from './Money';
 import Distance from './Distance';
 
 const Converter = () => {
-
     const dataMoney: Array<string> = ['Доллар США', 'Рубли'];
     const dataDistance: Array<string> = ['Метры', 'Сантиметры'];
 
