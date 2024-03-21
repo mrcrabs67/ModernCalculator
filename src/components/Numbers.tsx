@@ -28,8 +28,6 @@ const number = ({ number, setNumber }: Props) => {
                 h="40px"
                 margin="4px"
                 onClick={() => {
-                    console.log('asdf = ', num);
-                    // debugger;
                     if (number == '0') setNumber(num);
                     else {
                         setNumber(`${number}${num}`);

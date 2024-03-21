@@ -1,16 +1,16 @@
 import { Box, Button, List, SlideFade, useDisclosure } from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import { SettingsIcon } from '@chakra-ui/icons';
 import React from 'react';
 
 type Props = {
     setMode: any;
 };
-const Menu = ({ setMode }: Props) => {
+const ConvertMenu = ({ setMode }: Props) => {
     const { isOpen, onToggle } = useDisclosure();
 
     return (
         <Box display="flex" flexDirection="row">
-            <HamburgerIcon
+            <SettingsIcon
                 w="45px"
                 h="45px"
                 p="5px"
@@ -35,17 +35,9 @@ const Menu = ({ setMode }: Props) => {
                         gap="10px"
                         fontSize="20px"
                     >
-                        <Button
-                            key="Calculator"
-                            onClick={() => setMode('Calculator')}
-                        >
-                            Calculator
-                        </Button>
-                        <Button
-                            key="Converter"
-                            onClick={() => setMode('Converter')}
-                        >
-                            Converter
+                        <Button onClick={() => setMode('Money')}>Money</Button>
+                        <Button onClick={() => setMode('Distance')}>
+                            Distance
                         </Button>
                     </List>
                 </Box>
@@ -54,4 +46,4 @@ const Menu = ({ setMode }: Props) => {
     );
 };
 
-export default Menu;
+export default ConvertMenu;

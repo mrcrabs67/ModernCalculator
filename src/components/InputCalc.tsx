@@ -9,7 +9,7 @@ type Props = {
     updateHistory: (calcResult: string) => void;
 };
 
-const expressions = /[0-9]|\)/; // вынести над компонентом, зачем каждыф раз создавать и выделять место в памяти при перерисовке компонента?
+const expressions = /[0-9]|\)/;
 
 const InputCalc = ({ updateHistory }: Props) => {
     // в Целом, мне нравится компонент

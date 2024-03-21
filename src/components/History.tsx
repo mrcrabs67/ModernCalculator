@@ -3,7 +3,6 @@ import { Box, Button } from '@chakra-ui/react';
 
 type Props = {
     data: any;
-    setNumber?: any; // а ну да, пошел я нахер
 };
 
 const History = ({ data }: Props) => {
