@@ -1,6 +1,5 @@
 import { Flex } from '@chakra-ui/react';
 import React, { useRef, useState } from 'react';
-import { SettingsIcon } from '@chakra-ui/icons';
 import Money from './Money';
 import Distance from './Distance';
 import ConvertMenu from '@components/ConvertMenu';

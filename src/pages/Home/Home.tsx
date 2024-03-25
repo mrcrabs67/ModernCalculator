@@ -1,18 +1,28 @@
 import React from 'react';
 import { ErrorBoundary } from '@components/ErrorBoundary';
-import { Box, Button, Text } from '@chakra-ui/react';
+import {
+    Box,
+    Button,
+    IconButton,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    Text,
+} from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { useState, useMemo, useCallback } from 'react';
 
 import InputCalc from '../../components/InputCalc';
 import Calculator from '../../components/Calculator';
 import History from '../../components/History';
-import Menu from '../../components/Menu';
+import MenuComp from '@components/MenuComp';
 import ClickCalc from '../../components/ClickCalc';
 import Converter from '../../components/Converter';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, Link } from 'react-router-dom';
 import { historyStateSelector } from '@store/calculator/selector';
+import MenuBut from "@components/MenuButton";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -120,22 +130,38 @@ const Home = () => {
                         // </Box>
                     }
                     <Box display="flex" h="90px">
-                        {/*<HamburgerIcon w='45px' h='45px' p='5px' m='5px' borderRadius='5px'/>*/}
-                        <Menu setMode={setMode} /> // мне нравится что меню
-                        вынесено в компонент отдельный, но будет красивее если
-                        оно будет работать с редаксом или роутером
+                        <MenuBut></MenuBut>
                     </Box>
                     <Box display="flex" flex-direction="row" m="10px">
                         <Box display="flex" flexDirection="column">
                             History
                             <History data={history} />
                         </Box>
-                        {/*<Routes>*/}
-                        {/*    <Route path="/" element={<Calculator calculator={calculator} calcTypeChange={calcTypeChange} history={history} />} />*/}
-                        {/*    <Route path="converter" element={<Converter />} />*/}
-                        {/*</Routes>*/}
+                        <Routes>
+                            <Route
+                                path="/"
+                                element={
+                                    <Calculator
+                                        calculator={calculator}
+                                        calcTypeChange={calcTypeChange}
+                                        history={history}
+                                    />
+                                }
+                            />
+                            <Route path="converter" element={<Converter />} />
+                            <Route
+                                path="calculator"
+                                element={
+                                    <Calculator
+                                        calculator={calculator}
+                                        calcTypeChange={calcTypeChange}
+                                        history={history}
+                                    />
+                                }
+                            />
+                        </Routes>
                     </Box>
-                    {application}
+                    {/*{application}*/}
                 </Box>
             </div>
         </ErrorBoundary>

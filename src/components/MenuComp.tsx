@@ -1,11 +1,18 @@
-import { Box, Button, List, SlideFade, useDisclosure } from '@chakra-ui/react';
+import {
+    Box,
+    Button,
+    List,
+    MenuButton,
+    SlideFade,
+    useDisclosure,
+} from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import React from 'react';
 
 type Props = {
     setMode: any;
 };
-const Menu = ({ setMode }: Props) => {
+const MenuComp = ({ setMode }: Props) => {
     const { isOpen, onToggle } = useDisclosure();
 
     return (
@@ -54,4 +61,4 @@ const Menu = ({ setMode }: Props) => {
     );
 };
 
-export default Menu;
+export default MenuComp;
