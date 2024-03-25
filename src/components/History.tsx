@@ -6,8 +6,8 @@ type Props = {
 };
 
 const History = ({ data }: Props) => {
-    return data.map((result: any) => {
-        return <Button key={result}>{result}</Button>; // для вывода информации использовать кнопку - сомнительно, но окей
+    return data.map((result: any, index: number) => {
+        return <Button key={index}>{result}</Button>; // для вывода информации использовать кнопку - сомнительно, но окей
     });
 };
 

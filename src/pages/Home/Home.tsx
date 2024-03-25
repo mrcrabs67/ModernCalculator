@@ -3,6 +3,7 @@ import { ErrorBoundary } from '@components/ErrorBoundary';
 import {
     Box,
     Button,
+    Flex,
     IconButton,
     Menu,
     MenuButton,
@@ -16,13 +17,15 @@ import { useState, useMemo, useCallback } from 'react';
 import InputCalc from '../../components/InputCalc';
 import Calculator from '../../components/Calculator';
 import History from '../../components/History';
-import MenuComp from '@components/MenuComp';
 import ClickCalc from '../../components/ClickCalc';
 import Converter from '../../components/Converter';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, Link } from 'react-router-dom';
 import { historyStateSelector } from '@store/calculator/selector';
-import MenuBut from "@components/MenuButton";
+import MenuBut from '@components/MenuButton';
+import { useColorMode, useColorModeValue } from '@chakra-ui/react';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import ThemeButton from '@components/ThemeButton';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -33,6 +36,9 @@ const Home = () => {
     const [calcType, setCalcType] = useState('ClickCalc'); // вынести логику в роутер и пускай он разруливает
     const [history, setHistory] = useState([]); // две истории, и в редаксе и тут, глаз режет. Если они разные для разных калькуляторов, прячь внутри самих калькуляторов или редаксе
     const [mode, setMode] = useState<string>('Calculator');
+    //colorMode
+    const { colorMode, toggleColorMode } = useColorMode();
+    const navBg = useColorModeValue('white', 'blackAlpha.200');
 
     const historyState = useSelector(historyStateSelector);
 
@@ -110,7 +116,11 @@ const Home = () => {
 
     return (
         <ErrorBoundary>
-            <div className="App">
+            <Flex bg={navBg} className="App">
+                <ThemeButton
+                    colorMode={colorMode}
+                    toggleColorMode={toggleColorMode}
+                />
                 <Box
                     display="flex"
                     flexDirection="column"
@@ -118,17 +128,6 @@ const Home = () => {
                     alignItems="center"
                     h="100vh"
                 >
-                    {
-                        // <Box display="flex">
-                        //     {history.map((e: any, index: number) => {
-                        //         return (
-                        //             <Button key={index} color="red" size="xs">
-                        //                 {e}
-                        //             </Button>
-                        //         );
-                        //     })}
-                        // </Box>
-                    }
                     <Box display="flex" h="90px">
                         <MenuBut></MenuBut>
                     </Box>
@@ -140,6 +139,16 @@ const Home = () => {
                         <Routes>
                             <Route
                                 path="/"
+                                element={
+                                    <Calculator
+                                        calculator={calculator}
+                                        calcTypeChange={calcTypeChange}
+                                        history={history}
+                                    />
+                                }
+                            />
+                            <Route
+                                path="*"
                                 element={
                                     <Calculator
                                         calculator={calculator}
@@ -163,7 +172,7 @@ const Home = () => {
                     </Box>
                     {/*{application}*/}
                 </Box>
-            </div>
+            </Flex>
         </ErrorBoundary>
     );
 };
