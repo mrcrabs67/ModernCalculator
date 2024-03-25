@@ -98,25 +98,9 @@ const Home = () => {
             break;
     }
 
-    switch (mode) {
-        case 'Converter':
-            application = <Converter />;
-            break;
-        case 'Calculator':
-        default: // вынес дефолт сюда же, но свитч мне не нравится
-            application = (
-                <Calculator
-                    calculator={calculator} // плохой нейминг, можно передавать как children, а не через пропс, будет красивее
-                    calcTypeChange={calcTypeChange}
-                    history={history}
-                />
-            );
-            break;
-    }
-
     return (
         <ErrorBoundary>
-            <Flex bg={navBg} className="App">
+            <Box bg={navBg} className="App">
                 <ThemeButton
                     colorMode={colorMode}
                     toggleColorMode={toggleColorMode}
@@ -128,9 +112,14 @@ const Home = () => {
                     alignItems="center"
                     h="100vh"
                 >
-                    <Box display="flex" h="90px">
+                    <Box
+                        display="flex"
+                        flexDirection="column"
+                        alignItems="flex-start"
+                    >
                         <MenuBut></MenuBut>
                     </Box>
+
                     <Box display="flex" flex-direction="row" m="10px">
                         <Box display="flex" flexDirection="column">
                             History
@@ -170,9 +159,8 @@ const Home = () => {
                             />
                         </Routes>
                     </Box>
-                    {/*{application}*/}
                 </Box>
-            </Flex>
+            </Box>
         </ErrorBoundary>
     );
 };

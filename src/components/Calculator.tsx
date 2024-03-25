@@ -14,7 +14,10 @@ const Calculator = ({ calculator, calcTypeChange }: Props) => {
             justifyContent="center"
             m="10px"
         >
-            <Button onClick={calcTypeChange}>Change CalcType</Button>
+            <Box display="flex" flexDirection="row" justifyContent="center" gap="10px">
+                <Button onClick={calcTypeChange}>Input</Button>
+                <Button onClick={calcTypeChange}>Typing</Button>
+            </Box>
             <Box m="10px">{calculator}</Box>
         </Box>
     );
