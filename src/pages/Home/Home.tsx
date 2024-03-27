@@ -129,44 +129,9 @@ const Home = () => {
                                 path="/"
                                 element={
                                     <Calculator
-                                        calculator={calculator}
                                         calcTypeChange={calcTypeChange}
                                         history={history}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="*"
-                                element={
-                                    <Calculator
-                                        calculator={calculator}
-                                        calcTypeChange={calcTypeChange}
-                                        history={history}
-                                    />
-                                }
-                            />
-                            <Route path="converter" element={<Converter />} />
-                            <Route
-                                path="calculator"
-                                element={
-                                    <Calculator
-                                        calculator={calculator}
-                                        calcTypeChange={calcTypeChange}
-                                        history={history}
-                                    />
-                                }
-                            >
-                                <Route
-                                    path="input"
-                                    element={
-                                        <InputCalc
-                                            updateHistory={updateHistory}
-                                        />
-                                    }
-                                />
-                                <Route
-                                    path="type"
-                                    element={
+                                    >
                                         <ClickCalc
                                             number={number}
                                             setNumber={setNumber}
@@ -175,9 +140,59 @@ const Home = () => {
                                             updateHistory={updateHistory}
                                             applyExpression={applyExpression}
                                         />
-                                    }
-                                />
-                            </Route>
+                                    </Calculator>
+                                }
+                            />
+                            <Route path="converter" element={<Converter />} />
+                            <Route
+                                path="calculator"
+                                element={
+                                    <Calculator
+                                        calcTypeChange={calcTypeChange}
+                                        history={history}
+                                    >
+                                        <ClickCalc
+                                            number={number}
+                                            setNumber={setNumber}
+                                            result={result}
+                                            setResult={setResult}
+                                            updateHistory={updateHistory}
+                                            applyExpression={applyExpression}
+                                        />
+                                    </Calculator>
+                                }
+                            ></Route>
+                            <Route
+                                path="/calculator/input"
+                                element={
+                                    <Calculator
+                                        calcTypeChange={calcTypeChange}
+                                        history={history}
+                                    >
+                                        <InputCalc
+                                            updateHistory={updateHistory}
+                                        />
+                                    </Calculator>
+                                }
+                            />
+                            <Route
+                                path="/calculator/type"
+                                element={
+                                    <Calculator
+                                        calcTypeChange={calcTypeChange}
+                                        history={history}
+                                    >
+                                        <ClickCalc
+                                            number={number}
+                                            setNumber={setNumber}
+                                            result={result}
+                                            setResult={setResult}
+                                            updateHistory={updateHistory}
+                                            applyExpression={applyExpression}
+                                        />
+                                    </Calculator>
+                                }
+                            />
                         </Routes>
                     </Box>
                 </Box>

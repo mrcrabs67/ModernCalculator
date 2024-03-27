@@ -3,11 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 type Props = {
-    calculator: any;
+    children?: React.ReactNode;
     calcTypeChange: () => void;
     history: any;
 };
-const Calculator = ({ calculator, calcTypeChange }: Props) => {
+const Calculator = ({ children, calcTypeChange }: Props) => {
     return (
         <Box
             display="flex"
@@ -27,9 +27,9 @@ const Calculator = ({ calculator, calcTypeChange }: Props) => {
                 <Link to="/calculator/type">
                     <Button>TypingLink</Button>
                 </Link>
-                <Button onClick={calcTypeChange}>Change</Button>
+                {/*<Button onClick={calcTypeChange}>Change</Button>*/}
             </Box>
-            <Box m="10px">{calculator}</Box>
+            <Box m="10px">{children}</Box>
         </Box>
     );
 };
