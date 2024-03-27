@@ -73,7 +73,6 @@ const Home = () => {
         // почему не через превьюс стейт? чуток оптимизирует и уберет зависимость
     }, [calcType]);
 
-    let application;
     let calculator: any; // плохой нейминг, калькулятор передаем в кульлутор ниже, сразу представляю рекурсию
 
     switch (
@@ -156,7 +155,29 @@ const Home = () => {
                                         history={history}
                                     />
                                 }
-                            />
+                            >
+                                <Route
+                                    path="input"
+                                    element={
+                                        <InputCalc
+                                            updateHistory={updateHistory}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="type"
+                                    element={
+                                        <ClickCalc
+                                            number={number}
+                                            setNumber={setNumber}
+                                            result={result}
+                                            setResult={setResult}
+                                            updateHistory={updateHistory}
+                                            applyExpression={applyExpression}
+                                        />
+                                    }
+                                />
+                            </Route>
                         </Routes>
                     </Box>
                 </Box>

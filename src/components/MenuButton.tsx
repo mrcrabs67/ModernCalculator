@@ -1,5 +1,6 @@
 import {
     Box,
+    Button,
     IconButton,
     Menu,
     MenuButton,
@@ -9,11 +10,17 @@ import {
 import { HamburgerIcon } from '@chakra-ui/icons';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { GoHome } from 'react-icons/go';
 
 const MenuBut = () => {
     return (
         <Box display="flex" flexDirection="row">
             <Menu>
+                <Link to="/">
+                    <Button>
+                        <GoHome />
+                    </Button>
+                </Link>
                 <MenuButton
                     as={IconButton}
                     icon={<HamburgerIcon />}
