@@ -1,12 +1,24 @@
 import { Flex } from '@chakra-ui/react';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Money from './Money';
 import Distance from './Distance';
 import ConvertMenu from '@components/ConvertMenu';
+import { useDispatch } from 'react-redux';
+import { fetchCurrencyRubUsd } from '@store/calculator/thunks';
 
 const Converter = () => {
     const dataMoney: Array<string> = ['Доллар США', 'Рубли'];
     const dataDistance: Array<string> = ['Метры', 'Сантиметры'];
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log("useEffect");
+        dispatch(fetchCurrencyRubUsd());
+        return () => {
+            // код при размонтировании компонента
+        };
+    }, [dispatch]);
 
     const [mode, setMode] = useState('Distance');
 

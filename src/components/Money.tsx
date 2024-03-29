@@ -5,8 +5,6 @@ import {
     Input,
     Select,
     Button,
-    List,
-    ListItem,
 } from '@chakra-ui/react';
 import React, { useRef, useState } from 'react';
 import getCurrency from '../functions/getCurrency';
