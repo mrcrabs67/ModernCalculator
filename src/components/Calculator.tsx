@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 
 type Props = {
     children?: React.ReactNode;
-    calcTypeChange: () => void;
     history: any;
 };
-const Calculator = ({ children, calcTypeChange }: Props) => {
+const Calculator = ({ children }: Props) => {
     return (
         <Box
             display="flex"

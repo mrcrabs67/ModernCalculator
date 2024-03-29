@@ -1,17 +1,6 @@
 import React from 'react';
 import { ErrorBoundary } from '@components/ErrorBoundary';
-import {
-    Box,
-    Button,
-    Flex,
-    IconButton,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuList,
-    Text,
-} from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
+import { Box } from '@chakra-ui/react';
 import { useState, useMemo, useCallback } from 'react';
 
 import InputCalc from '../../components/InputCalc';
@@ -24,7 +13,6 @@ import { Routes, Route, Link } from 'react-router-dom';
 import { historyStateSelector } from '@store/calculator/selector';
 import MenuBut from '@components/MenuButton';
 import { useColorMode, useColorModeValue } from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import ThemeButton from '@components/ThemeButton';
 
 const Home = () => {
@@ -65,38 +53,6 @@ const Home = () => {
         [history]
     );
 
-    const calcTypeChange = useCallback(() => {
-        calcType === 'ClickCalc'
-            ? setCalcType('InputCalc')
-            : setCalcType('ClickCalc');
-        // setCalcType((previous: String) => previous === 'ClickCalc' ? setCalcType('InputCalc') : setCalcType('ClickCalc'))
-        // почему не через превьюс стейт? чуток оптимизирует и уберет зависимость
-    }, [calcType]);
-
-    let calculator: any; // плохой нейминг, калькулятор передаем в кульлутор ниже, сразу представляю рекурсию
-
-    switch (
-        calcType // заменить на роутер
-    ) {
-        case 'ClickCalc':
-        default:
-            // useContext почитать
-            calculator = (
-                <ClickCalc
-                    number={number}
-                    setNumber={setNumber}
-                    result={result}
-                    setResult={setResult}
-                    updateHistory={updateHistory}
-                    applyExpression={applyExpression}
-                />
-            );
-            break;
-        case 'InputCalc':
-            calculator = <InputCalc updateHistory={updateHistory} />;
-            break;
-    }
-
     return (
         <ErrorBoundary>
             <Box bg={navBg} className="App">
@@ -128,10 +84,7 @@ const Home = () => {
                             <Route
                                 path="/"
                                 element={
-                                    <Calculator
-                                        calcTypeChange={calcTypeChange}
-                                        history={history}
-                                    >
+                                    <Calculator history={history}>
                                         <ClickCalc
                                             number={number}
                                             setNumber={setNumber}
@@ -147,10 +100,7 @@ const Home = () => {
                             <Route
                                 path="calculator"
                                 element={
-                                    <Calculator
-                                        calcTypeChange={calcTypeChange}
-                                        history={history}
-                                    >
+                                    <Calculator history={history}>
                                         <ClickCalc
                                             number={number}
                                             setNumber={setNumber}
@@ -165,10 +115,7 @@ const Home = () => {
                             <Route
                                 path="/calculator/input"
                                 element={
-                                    <Calculator
-                                        calcTypeChange={calcTypeChange}
-                                        history={history}
-                                    >
+                                    <Calculator history={history}>
                                         <InputCalc
                                             updateHistory={updateHistory}
                                         />
@@ -178,10 +125,7 @@ const Home = () => {
                             <Route
                                 path="/calculator/type"
                                 element={
-                                    <Calculator
-                                        calcTypeChange={calcTypeChange}
-                                        history={history}
-                                    >
+                                    <Calculator history={history}>
                                         <ClickCalc
                                             number={number}
                                             setNumber={setNumber}
