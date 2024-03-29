@@ -9,3 +9,7 @@ export const historyStateSelector = createSelector(
     (state: RootState) => state.calculator.history,
     (history) => history
 );
+export const rubUsdSelector = createSelector(
+    (state: RootState) => state.calculator.rubUsd,
+    (rubUsd) => rubUsd
+);

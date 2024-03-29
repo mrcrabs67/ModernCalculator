@@ -1,5 +1,5 @@
 import { RootState, StoreDispatch, StoreGetState } from '../configureStore';
-import { setErrorCode } from './reducer';
+import { setErrorCode, setRubUsd } from './reducer';
 // import { API_URL_LIST, PASS } from '../../config';
 // import { md5 } from 'js-md5';
 
@@ -16,12 +16,17 @@ const urlCurrencyRub =
 export const fetchCurrencyRubUsd =
     () => async (dispatch: StoreDispatch, getState: StoreGetState) => {
         try {
-            fetch(urlCurrencyRub).then((response) => {
-                response.json();
-            });
+            fetch(urlCurrencyRub)
+                .then((response) => response.json())
+                .then((result) => {
+                    const rubUsd: number = result.data?.RUB?.value;
+                    console.log(rubUsd);
+                    dispatch(setRubUsd(rubUsd));
+                })
+                .catch((e) => console.log(e));
         } catch (e) {
             console.error(e);
         } finally {
-            console.log('thunks');
+            console.log('finally');
         }
     };
