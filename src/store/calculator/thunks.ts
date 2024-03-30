@@ -1,18 +1,26 @@
 import { RootState, StoreDispatch, StoreGetState } from '../configureStore';
-import { setErrorCode, setRubUsd } from './reducer';
-// import { API_URL_LIST, PASS } from '../../config';
-// import { md5 } from 'js-md5';
-
-const optionsCurr: any = {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-};
+import { setErrorCode, setRubUsd, setRubUsdConvert } from './reducer';
+import { useSelector } from 'react-redux';
+import {
+    rubUsdSelector,
+    rubUsdConvertSelector,
+} from '@store/calculator/selector';
 
 const urlCurrencyRub =
     'https://api.currencyapi.com/v3/latest?apikey=cur_live_z4Gsj4avmy9YPHsmDsab1eCFGpE7ywJy9vYVD0kx&currencies=RUB';
 
+export const convertUsdRub =
+    (Usd: number) =>
+    async (dispatch: StoreDispatch, getState: StoreGetState) => {
+        let result: number;
+        try {
+            result = Usd * useSelector(rubUsdSelector);
+            dispatch(setRubUsdConvert(result));
+            // return result;
+        } catch (e) {
+            console.error(e);
+        }
+    };
 export const fetchCurrencyRubUsd =
     () => async (dispatch: StoreDispatch, getState: StoreGetState) => {
         try {

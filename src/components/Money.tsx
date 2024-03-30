@@ -1,17 +1,15 @@
-import {
-    Box,
-    Flex,
-    Text,
-    Input,
-    Select,
-    Button,
-} from '@chakra-ui/react';
+import { Flex, Text, Input, Select, Button } from '@chakra-ui/react';
 import React, { useRef, useState } from 'react';
 import getCurrency from '../functions/getCurrency';
+import { useDispatch, useSelector } from "react-redux";
+import { convertUsdRub } from '@store/calculator/thunks';
+import { setRubUsdConvert } from '@store/calculator/reducer';
+import { rubUsdConvertSelector, rubUsdSelector } from "@store/calculator/selector";
 
 type Props = {
     data: Array<string>;
 };
+
 const Converter = ({ data }: Props) => {
     const selection = data.map((e) => {
         return (
@@ -21,28 +19,28 @@ const Converter = ({ data }: Props) => {
         );
     });
 
-    const firstRef = useRef<any>();
-    const secondRef = useRef<any>();
-
-    const [input, setInput] = useState<string | number>(0);
-    const [result, setResult] = useState<string | number>(0);
-
-    const convertMoney = async () => {
-        // действительно, зачем же нам экономить ресурсы пк
-        // будем каждый раз дергать
-        // вместо того, что бы вынести в редакс получение курса и запрашивать один раз при открытии раздела
-        // так же лучше и расчет вынести в редакс, и результат брать из редакса с помощью селектора
-        const currencyUsd = Number(await getCurrency());
+    const convertMoney = () => {
         switch (secondRef.current.value) {
             case 'Доллар США':
                 setResult(input);
                 break;
             case 'Рубли':
-                // dispatch(updateHistory(Number(input) * currencyUsd));
-                setResult(Number(input) * currencyUsd);
+                setResult(Number(input) * rubUsd);
                 break;
         }
     };
+
+    const dispatch = useDispatch();
+
+    const firstRef = useRef<any>();
+    const secondRef = useRef<any>();
+
+    const rubUsd = useSelector(rubUsdSelector);
+
+    const [input, setInput] = useState<string | number>(0);
+    const [result, setResult] = useState<string | number>(0);
+
+
 
     return (
         <Flex
