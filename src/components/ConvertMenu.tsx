@@ -1,47 +1,22 @@
-import { Box, Button, List, SlideFade, useDisclosure } from '@chakra-ui/react';
-import { SettingsIcon } from '@chakra-ui/icons';
+import { Box, Button } from '@chakra-ui/react';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-type Props = {
-    setMode: any;
-};
-const ConvertMenu = ({ setMode }: Props) => {
-    const { isOpen, onToggle } = useDisclosure();
-
+const ConvertMenu = () => {
     return (
         <Box display="flex" flexDirection="row">
-            <SettingsIcon
-                w="45px"
-                h="45px"
-                p="5px"
-                m="5px"
-                borderRadius="5px"
-                onClick={onToggle}
-            />
-            <SlideFade in={isOpen} offsetY="-20px" unmountOnExit>
-                <Box
-                    display="flex"
-                    bg="gray.100"
-                    p="10px"
-                    m="4px"
-                    borderRadius="8px"
-                    w="60%"
-                    position="absolute"
-                    zIndex="10"
-                >
-                    <List
-                        display="flex"
-                        flexDirection="column"
-                        gap="10px"
-                        fontSize="20px"
-                    >
-                        <Button onClick={() => setMode('Money')}>Money</Button>
-                        <Button onClick={() => setMode('Distance')}>
-                            Distance
-                        </Button>
-                    </List>
-                </Box>
-            </SlideFade>
+            <Box display="flex" flexDirection="row" gap="10px">
+                <Link to="/converter/money">
+                    <Button colorScheme="teal" size="xs">
+                        Money
+                    </Button>
+                </Link>
+                <Link to="/converter/distance">
+                    <Button colorScheme="teal" size="xs">
+                        Distance
+                    </Button>
+                </Link>
+            </Box>
         </Box>
     );
 };

@@ -14,8 +14,13 @@ import { historyStateSelector } from '@store/calculator/selector';
 import MenuBut from '@components/MenuButton';
 import { useColorMode, useColorModeValue } from '@chakra-ui/react';
 import ThemeButton from '@components/ThemeButton';
+import Money from '@components/Money';
+import Distance from '@components/Distance';
 
 const Home = () => {
+    const dataMoney: Array<string> = ['Доллар США', 'Рубли'];
+    const dataDistance: Array<string> = ['Метры', 'Сантиметры'];
+
     const dispatch = useDispatch();
 
     // где редакс дядя витя
@@ -75,9 +80,13 @@ const Home = () => {
                         <MenuBut></MenuBut>
                     </Box>
 
-                    <Box display="flex" flex-direction="row" m="10px">
+                    <Box
+                        display="flex"
+                        flex-direction="row"
+                        m="10px"
+                        gap="10px"
+                    >
                         <Box display="flex" flexDirection="column">
-                            History
                             <History data={history} />
                         </Box>
                         <Routes>
@@ -96,7 +105,14 @@ const Home = () => {
                                     </Calculator>
                                 }
                             />
-                            <Route path="converter" element={<Converter />} />
+                            <Route
+                                path="converter"
+                                element={
+                                    <Converter>
+                                        <Money data={dataMoney} />
+                                    </Converter>
+                                }
+                            />
                             <Route
                                 path="calculator"
                                 element={
@@ -135,6 +151,22 @@ const Home = () => {
                                             applyExpression={applyExpression}
                                         />
                                     </Calculator>
+                                }
+                            />
+                            <Route
+                                path="converter/money"
+                                element={
+                                    <Converter>
+                                        <Money data={dataMoney} />
+                                    </Converter>
+                                }
+                            />
+                            <Route
+                                path="converter/distance"
+                                element={
+                                    <Converter>
+                                        <Distance data={dataDistance} />
+                                    </Converter>
                                 }
                             />
                         </Routes>
