@@ -10,13 +10,15 @@ import {
 export type CalcState = {
     history: string[];
     errorCode: string | null;
-    rubUsd: number | null;
+    rubUsdCurrency: number | null;
+    rubUsdConvert: number | null;
 };
 
 export const initialCalcState: CalcState = {
     history: [],
     errorCode: null,
-    rubUsd: null,
+    rubUsdCurrency: null,
+    rubUsdConvert: null,
 };
 
 const slice = createSlice({
@@ -31,13 +33,16 @@ const slice = createSlice({
             state.errorCode = action.payload;
         },
         setRubUsd: (state, action: PayloadAction<number | null>) => {
-            state.rubUsd = action.payload;
+            state.rubUsdCurrency = action.payload;
+        },
+        setRubUsdConvert: (state, action: PayloadAction<number | null>) => {
+            state.rubUsdConvert = action.payload;
         },
     },
 });
 
 const { reducer } = slice;
 
-export const { setHistory, setErrorCode, setRubUsd } = slice.actions;
+export const { setHistory, setErrorCode, setRubUsd, setRubUsdConvert } = slice.actions;
 
 export default reducer;

@@ -10,6 +10,10 @@ export const historyStateSelector = createSelector(
     (history) => history
 );
 export const rubUsdSelector = createSelector(
-    (state: RootState) => state.calculator.rubUsd,
-    (rubUsd) => rubUsd
+    (state: RootState) => state.calculator.rubUsdCurrency,
+    (rubUsdCurrency) => rubUsdCurrency
+);
+export const rubUsdConvertSelector = createSelector(
+    (state: RootState) => state.calculator.rubUsdConvert,
+    (rubUsdConvert) => rubUsdConvert
 );
