@@ -16,7 +16,7 @@ const MenuBut = () => {
     return (
         <Box display="flex" flexDirection="row">
             <Menu>
-                <Link to="/">
+                <Link to="/ModernCalculator">
                     <Button>
                         <GoHome />
                     </Button>

@@ -91,6 +91,21 @@ const Home = () => {
                         </Box>
                         <Routes>
                             <Route
+                                path="/ModernCalculator"
+                                element={
+                                    <Calculator history={history}>
+                                        <ClickCalc
+                                            number={number}
+                                            setNumber={setNumber}
+                                            result={result}
+                                            setResult={setResult}
+                                            updateHistory={updateHistory}
+                                            applyExpression={applyExpression}
+                                        />
+                                    </Calculator>
+                                }
+                            />
+                            <Route
                                 path="/"
                                 element={
                                     <Calculator history={history}>

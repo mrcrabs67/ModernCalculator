@@ -1,10 +1,7 @@
 import { Flex, Text, Input, Select, Button } from '@chakra-ui/react';
 import React, { useRef, useState } from 'react';
-import getCurrency from '../functions/getCurrency';
-import { useDispatch, useSelector } from "react-redux";
-import { convertUsdRub } from '@store/calculator/thunks';
-import { setRubUsdConvert } from '@store/calculator/reducer';
-import { rubUsdConvertSelector, rubUsdSelector } from "@store/calculator/selector";
+import { useDispatch, useSelector } from 'react-redux';
+import { rubUsdSelector } from '@store/calculator/selector';
 
 type Props = {
     data: Array<string>;
@@ -39,8 +36,6 @@ const Converter = ({ data }: Props) => {
 
     const [input, setInput] = useState<string | number>(0);
     const [result, setResult] = useState<string | number>(0);
-
-
 
     return (
         <Flex

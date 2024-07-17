@@ -58,6 +58,7 @@ const ClickCalc = ({
                     {symbols.map((sym: string, index: number) => {
                         return (
                             <CountButton
+                                key={index}
                                 expression={sym}
                                 data={number}
                                 applyExpression={applyExpression}
